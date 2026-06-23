@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { TranslationKey } from '@/lib/translations';
 
@@ -24,24 +25,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2.5 mb-4">
-              <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="footer-bg" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#3b82f6"/>
-                    <stop offset="100%" stopColor="#8b5cf6"/>
-                  </linearGradient>
-                </defs>
-                <rect width="32" height="32" rx="8" fill="url(#footer-bg)"/>
-                <line x1="7" y1="10" x2="25" y2="10" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-                <line x1="16" y1="10" x2="16" y2="25" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-                <circle cx="7" cy="10" r="2" fill="white"/>
-                <circle cx="25" cy="10" r="2" fill="white"/>
-                <circle cx="16" cy="25" r="2" stroke="white" strokeWidth="1.5" fill="none"/>
-                <line x1="10" y1="10" x2="10" y2="15" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.6"/>
-                <line x1="22" y1="10" x2="22" y2="15" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.6"/>
-                <circle cx="10" cy="15" r="1.2" stroke="white" strokeWidth="1.2" fill="none" strokeOpacity="0.6"/>
-                <circle cx="22" cy="15" r="1.2" stroke="white" strokeWidth="1.2" fill="none" strokeOpacity="0.6"/>
-              </svg>
+              <Image src="/logo.png" alt="TechTrekker Labs" width={36} height={36} className="rounded-full" />
               <span className="font-bold text-slate-900 dark:text-slate-100 text-lg tracking-tight">TechTrekker Labs</span>
             </Link>
             <p className="text-slate-500 dark:text-slate-500 text-sm leading-relaxed max-w-xs">{t('footer_tagline')}</p>
