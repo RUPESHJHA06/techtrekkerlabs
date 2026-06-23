@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import HeroSection from '@/components/HeroSection';
 import ServiceCard from '@/components/ServiceCard';
@@ -9,35 +11,36 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { services } from '@/data/services';
 import { projects } from '@/data/portfolio';
 import { blogPosts } from '@/data/blog';
-
-const whyUs = [
-  { title: 'Security-First Approach', body: 'Every product we build is designed with security at its core — not bolted on after.' },
-  { title: 'End-to-End Delivery', body: 'From discovery and design to deployment and support, we handle the full lifecycle.' },
-  { title: 'Transparent Process', body: 'Clear timelines, regular updates, and full visibility at every stage.' },
-  { title: 'Scalable Solutions', body: 'We build for today and architect for tomorrow — solutions that grow with your business.' },
-];
-
-const stats = [
-  { value: 4, suffix: '', label: 'Core Services' },
-  { value: 8, suffix: '+', label: 'Technologies We Use' },
-  { value: 100, suffix: '%', label: 'Client Transparency' },
-  { value: 24, suffix: 'h', label: 'Response Time' },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function HomePage() {
+  const { t } = useLanguage();
+
+  const whyUs = [
+    { title: t('sec_why_s1_title'), body: t('sec_why_s1_body') },
+    { title: t('sec_why_s2_title'), body: t('sec_why_s2_body') },
+    { title: t('sec_why_s3_title'), body: t('sec_why_s3_body') },
+    { title: t('sec_why_s4_title'), body: t('sec_why_s4_body') },
+  ];
+
+  const stats = [
+    { value: 4,   suffix: '',  label: t('stat_core_services') },
+    { value: 8,   suffix: '+', label: t('stat_technologies') },
+    { value: 100, suffix: '%', label: t('stat_transparency') },
+    { value: 24,  suffix: 'h', label: t('stat_response') },
+  ];
+
   return (
     <main>
       <HeroSection />
 
       {/* ── Services ── */}
-      <section className="py-14 md:py-20 bg-slate-900">
+      <section className="py-14 md:py-20 bg-slate-50/80 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-100 mb-2">What We Do</h2>
-              <p className="text-slate-400 text-sm max-w-lg">
-                From mobile apps to AI tools — we build whatever your business needs, end to end.
-              </p>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">{t('sec_services_title')}</h2>
+              <p className="text-slate-600 dark:text-slate-400 text-sm max-w-lg">{t('sec_services_desc')}</p>
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -50,25 +53,21 @@ export default function HomePage() {
             ))}
           </div>
           <div className="mt-6">
-            <Link href="/services" className="text-blue-400 text-sm font-medium hover:text-blue-300 transition-colors">
-              View all services →
+            <Link href="/services" className="text-blue-600 dark:text-blue-400 text-sm font-medium hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
+              {t('view_all_services')}
             </Link>
           </div>
         </div>
       </section>
 
       {/* ── Why Choose Us ── */}
-      <section className="py-14 md:py-20 bg-slate-950">
+      <section className="py-14 md:py-20 bg-white dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <ScrollReveal>
               <div>
-                <h2 className="text-2xl font-bold text-slate-100 mb-3">
-                  Why Businesses Choose TechTrekker Labs
-                </h2>
-                <p className="text-slate-400 text-sm leading-relaxed mb-7">
-                  Engineers and strategists who care about your outcomes — not just deliverables.
-                </p>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3">{t('sec_why_title')}</h2>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-7">{t('sec_why_desc')}</p>
                 <div className="space-y-5">
                   {whyUs.map((p) => (
                     <div key={p.title} className="flex gap-4">
@@ -78,8 +77,8 @@ export default function HomePage() {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-slate-200 mb-0.5 text-sm">{p.title}</h3>
-                        <p className="text-slate-500 text-sm leading-relaxed">{p.body}</p>
+                        <h3 className="font-semibold text-slate-800 dark:text-slate-200 mb-0.5 text-sm">{p.title}</h3>
+                        <p className="text-slate-500 dark:text-slate-500 text-sm leading-relaxed">{p.body}</p>
                       </div>
                     </div>
                   ))}
@@ -90,13 +89,13 @@ export default function HomePage() {
             <div className="grid grid-cols-2 gap-4">
               {stats.map((s, i) => (
                 <ScrollReveal key={s.label} delay={i * 80}>
-                  <div className="bg-slate-800/50 border border-slate-700/50 rounded-xl p-6 hover:border-blue-500/30 transition-colors duration-300">
+                  <div className="bg-white dark:bg-slate-800/50 shadow-[0_1px_4px_rgba(0,0,0,0.08)] dark:shadow-none border border-slate-200/80 dark:border-slate-700/50 rounded-xl p-6 hover:border-blue-400/60 hover:shadow-[0_4px_16px_rgba(59,130,246,0.10)] dark:hover:border-blue-500/40 transition-all duration-300">
                     <AnimatedCounter
                       target={s.value}
                       suffix={s.suffix}
-                      className="text-3xl font-bold text-blue-400 mb-1"
+                      className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1"
                     />
-                    <div className="text-slate-400 text-sm">{s.label}</div>
+                    <div className="text-slate-600 dark:text-slate-400 text-sm">{s.label}</div>
                   </div>
                 </ScrollReveal>
               ))}
@@ -105,15 +104,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Portfolio preview ── */}
-      <section className="py-14 md:py-20 bg-slate-900">
+      {/* ── Portfolio ── */}
+      <section className="py-14 md:py-20 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-100 mb-2">Recent Work</h2>
-              <p className="text-slate-400 text-sm max-w-lg">
-                A selection of products and solutions we&apos;ve built for clients.
-              </p>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">{t('sec_portfolio_title')}</h2>
+              <p className="text-slate-600 dark:text-slate-400 text-sm max-w-lg">{t('sec_portfolio_desc')}</p>
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -126,8 +123,8 @@ export default function HomePage() {
             ))}
           </div>
           <div className="mt-6">
-            <Link href="/portfolio" className="text-blue-400 text-sm font-medium hover:text-blue-300 transition-colors">
-              View all projects →
+            <Link href="/portfolio" className="text-blue-600 dark:text-blue-400 text-sm font-medium hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
+              {t('view_all_projects')}
             </Link>
           </div>
         </div>
@@ -136,15 +133,13 @@ export default function HomePage() {
       {/* ── Testimonials ── */}
       <TestimonialsSection />
 
-      {/* ── Blog preview ── */}
-      <section className="py-14 md:py-20 bg-slate-900">
+      {/* ── Blog ── */}
+      <section className="py-14 md:py-20 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-100 mb-2">From the Blog</h2>
-              <p className="text-slate-400 text-sm max-w-lg">
-                Insights and guides from our engineering and security team.
-              </p>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">{t('sec_blog_title')}</h2>
+              <p className="text-slate-600 dark:text-slate-400 text-sm max-w-lg">{t('sec_blog_desc')}</p>
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -157,37 +152,27 @@ export default function HomePage() {
             ))}
           </div>
           <div className="mt-6">
-            <Link href="/blog" className="text-blue-400 text-sm font-medium hover:text-blue-300 transition-colors">
-              View all articles →
+            <Link href="/blog" className="text-blue-600 dark:text-blue-400 text-sm font-medium hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
+              {t('view_all_articles')}
             </Link>
           </div>
         </div>
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-14 md:py-20 bg-slate-950">
+      <section className="py-14 md:py-20 bg-white dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <div className="relative overflow-hidden bg-gradient-to-br from-blue-900/40 via-indigo-900/20 to-slate-900/60 border border-blue-500/20 rounded-2xl p-10 md:p-14 text-center">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-px bg-gradient-to-r from-transparent via-blue-500/60 to-transparent" />
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-100 mb-3">
-                Ready to Start Your Project?
-              </h2>
-              <p className="text-slate-400 text-sm mb-7 max-w-lg mx-auto">
-                Tell us about your idea and we&apos;ll help you build a secure, scalable digital product.
-              </p>
+            <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50 dark:from-blue-900/40 dark:via-indigo-900/20 dark:to-slate-900/60 border border-blue-200 dark:border-blue-500/20 rounded-2xl p-10 md:p-14 text-center">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent" />
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-100 mb-3">{t('sec_cta_title')}</h2>
+              <p className="text-slate-600 dark:text-slate-400 text-sm mb-7 max-w-lg mx-auto">{t('sec_cta_desc')}</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition-all duration-200 shadow-lg shadow-blue-500/20 text-sm"
-                >
-                  Get in Touch
+                <Link href="/contact" className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition-all duration-200 shadow-lg shadow-blue-500/20 text-sm">
+                  {t('sec_cta_primary')}
                 </Link>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center justify-center px-6 py-3 border border-slate-600 text-slate-300 font-semibold rounded-lg hover:border-blue-500/50 hover:text-blue-400 transition-all duration-200 text-sm"
-                >
-                  Explore Services
+                <Link href="/services" className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-semibold rounded-lg hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 text-sm">
+                  {t('sec_cta_secondary')}
                 </Link>
               </div>
             </div>

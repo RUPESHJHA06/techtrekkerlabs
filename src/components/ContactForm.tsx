@@ -17,10 +17,10 @@ interface Errors {
 
 const empty: FormState = { name: '', email: '', subject: '', message: '' };
 
-const inputCls =
-  'w-full px-4 py-2.5 bg-slate-800/60 border border-slate-700 rounded-lg text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/50 transition-all duration-200';
+const inputBase =
+  'w-full px-4 py-2.5 bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/50 transition-all duration-200';
 
-const errorCls = 'border-red-500/60 focus:ring-red-500/30 focus:border-red-500/50';
+const errorCls = 'border-red-400 dark:border-red-500/60 focus:ring-red-400/30';
 
 function validate(form: FormState): Errors {
   const errors: Errors = {};
@@ -53,10 +53,7 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate(form);
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs);
-      return;
-    }
+    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
 
     setLoading(true);
     setServerError('');
@@ -84,15 +81,15 @@ export default function ContactForm() {
     return (
       <div className="text-center py-10">
         <div className="w-14 h-14 bg-green-500/10 border border-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-7 h-7 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+          <svg className="w-7 h-7 text-green-500 dark:text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
             <polyline points="20 6 9 17 4 12" />
           </svg>
         </div>
-        <h3 className="text-slate-100 font-semibold text-xl mb-2">Message Sent!</h3>
-        <p className="text-slate-400 text-sm">We&apos;ll get back to you within 24 hours.</p>
+        <h3 className="text-slate-900 dark:text-slate-100 font-semibold text-xl mb-2">Message Sent!</h3>
+        <p className="text-slate-600 dark:text-slate-400 text-sm">We&apos;ll get back to you within 24 hours.</p>
         <button
           onClick={() => { setSubmitted(false); setForm(empty); setErrors({}); }}
-          className="mt-5 text-blue-400 text-sm hover:text-blue-300 transition-colors"
+          className="mt-5 text-blue-600 dark:text-blue-400 text-sm hover:text-blue-500 dark:hover:text-blue-300 transition-colors"
         >
           Send another message
         </button>
@@ -104,55 +101,34 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-4" noValidate>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="name" className="block text-xs font-medium text-slate-400 mb-1.5">
-            Name <span className="text-red-400">*</span>
+          <label htmlFor="name" className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">
+            Name <span className="text-red-500">*</span>
           </label>
-          <input
-            id="name"
-            type="text"
-            value={form.name}
-            onChange={set('name')}
-            placeholder="John Doe"
-            className={`${inputCls} ${errors.name ? errorCls : ''}`}
-          />
-          {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}
+          <input id="name" type="text" value={form.name} onChange={set('name')} placeholder="John Doe" className={`${inputBase} ${errors.name ? errorCls : ''}`} />
+          {errors.name && <p className="mt-1 text-xs text-red-500 dark:text-red-400">{errors.name}</p>}
         </div>
         <div>
-          <label htmlFor="email" className="block text-xs font-medium text-slate-400 mb-1.5">
-            Email <span className="text-red-400">*</span>
+          <label htmlFor="email" className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">
+            Email <span className="text-red-500">*</span>
           </label>
-          <input
-            id="email"
-            type="email"
-            value={form.email}
-            onChange={set('email')}
-            placeholder="john@company.com"
-            className={`${inputCls} ${errors.email ? errorCls : ''}`}
-          />
-          {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
+          <input id="email" type="email" value={form.email} onChange={set('email')} placeholder="john@company.com" className={`${inputBase} ${errors.email ? errorCls : ''}`} />
+          {errors.email && <p className="mt-1 text-xs text-red-500 dark:text-red-400">{errors.email}</p>}
         </div>
       </div>
       <div>
-        <label htmlFor="subject" className="block text-xs font-medium text-slate-400 mb-1.5">Subject</label>
-        <input id="subject" type="text" value={form.subject} onChange={set('subject')} placeholder="How can we help?" className={inputCls} />
+        <label htmlFor="subject" className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">Subject</label>
+        <input id="subject" type="text" value={form.subject} onChange={set('subject')} placeholder="How can we help?" className={inputBase} />
       </div>
       <div>
-        <label htmlFor="message" className="block text-xs font-medium text-slate-400 mb-1.5">
-          Message <span className="text-red-400">*</span>
+        <label htmlFor="message" className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">
+          Message <span className="text-red-500">*</span>
         </label>
-        <textarea
-          id="message"
-          rows={5}
-          value={form.message}
-          onChange={set('message')}
-          placeholder="Tell us about your project..."
-          className={`${inputCls} resize-none ${errors.message ? errorCls : ''}`}
-        />
-        {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
+        <textarea id="message" rows={5} value={form.message} onChange={set('message')} placeholder="Tell us about your project..." className={`${inputBase} resize-none ${errors.message ? errorCls : ''}`} />
+        {errors.message && <p className="mt-1 text-xs text-red-500 dark:text-red-400">{errors.message}</p>}
       </div>
 
       {serverError && (
-        <div className="px-4 py-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">
+        <div className="px-4 py-3 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-lg text-red-600 dark:text-red-400 text-sm">
           {serverError}
         </div>
       )}

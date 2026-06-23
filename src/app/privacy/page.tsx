@@ -56,11 +56,11 @@ export default function PrivacyPage() {
   return (
     <main>
       {/* Header */}
-      <section className="bg-slate-950 border-b border-slate-800/60 py-14 md:py-16">
+      <section className="bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800/60 py-14 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <h1 className="text-4xl font-bold text-slate-50 mb-3">Privacy Policy</h1>
-            <p className="text-slate-500 text-sm">
+            <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-50 mb-3">Privacy Policy</h1>
+            <p className="text-slate-500 dark:text-slate-500 text-sm">
               Last updated: <time dateTime="2025-01-01">January 1, 2025</time>
             </p>
           </div>
@@ -68,16 +68,16 @@ export default function PrivacyPage() {
       </section>
 
       {/* Content */}
-      <section className="py-12 bg-slate-900">
+      <section className="py-12 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-slate-400 text-sm leading-relaxed mb-10">
+          <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-10">
             At TechTrekker Labs (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you visit our website or engage with our services.
           </p>
           <div className="space-y-7">
             {sections.map((s) => (
-              <div key={s.heading} className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-6">
-                <h2 className="text-sm font-bold text-slate-200 mb-2">{s.heading}</h2>
-                <p className="text-slate-400 text-sm leading-relaxed">{s.body}</p>
+              <div key={s.heading} className="bg-white dark:bg-slate-800/40 shadow-sm dark:shadow-none border border-slate-200 dark:border-slate-700/50 rounded-xl p-6">
+                <h2 className="text-sm font-bold text-slate-800 dark:text-slate-200 mb-2">{s.heading}</h2>
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{s.body}</p>
               </div>
             ))}
           </div>

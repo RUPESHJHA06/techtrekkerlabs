@@ -103,41 +103,41 @@ export default async function ServiceDetailPage({
   return (
     <main>
       {/* Hero */}
-      <section className="relative bg-slate-950 border-b border-slate-800/60 overflow-hidden">
+      <section className="relative bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800/60 overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-          <Link href="/services" className="inline-flex items-center gap-1.5 text-blue-400 text-xs hover:text-blue-300 transition-colors mb-6">
+          <Link href="/services" className="inline-flex items-center gap-1.5 text-blue-600 dark:text-blue-400 text-xs hover:text-blue-500 dark:hover:text-blue-300 transition-colors mb-6">
             <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
               <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
             </svg>
             All Services
           </Link>
           <div className="flex items-start gap-5">
-            <div className="w-14 h-14 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 flex-shrink-0">
+            <div className="w-14 h-14 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center text-blue-500 dark:text-blue-400 flex-shrink-0">
               {Icon && <Icon className="w-7 h-7" />}
             </div>
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-slate-50 mb-3">{service.title}</h1>
-              <p className="text-slate-400 text-base leading-relaxed max-w-2xl">{service.detail}</p>
+              <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-50 mb-3">{service.title}</h1>
+              <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed max-w-2xl">{service.detail}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="py-14 bg-slate-900">
+      <section className="py-14 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-slate-100 mb-6">What&apos;s Included</h2>
+          <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-6">What&apos;s Included</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {service.features.map((f) => (
-              <div key={f} className="flex items-center gap-3 bg-slate-800/40 border border-slate-700/50 rounded-lg px-4 py-3 hover:border-blue-500/30 transition-colors duration-200">
+              <div key={f} className="flex items-center gap-3 bg-white dark:bg-slate-800/40 shadow-sm dark:shadow-none border border-slate-200 dark:border-slate-700/50 rounded-lg px-4 py-3 hover:border-blue-500/40 transition-colors duration-200">
                 <div className="w-5 h-5 bg-blue-600 rounded-md flex items-center justify-center flex-shrink-0">
                   <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <span className="text-slate-300 text-sm">{f}</span>
+                <span className="text-slate-700 dark:text-slate-300 text-sm">{f}</span>
               </div>
             ))}
           </div>
@@ -146,17 +146,17 @@ export default async function ServiceDetailPage({
 
       {/* Process */}
       {extras && (
-        <section className="py-14 bg-slate-950">
+        <section className="py-14 bg-white dark:bg-slate-950">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-bold text-slate-100 mb-6">Our Process</h2>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-6">Our Process</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {extras.process.map((step, i) => (
-                <div key={step.title} className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 hover:border-blue-500/30 transition-colors duration-300">
-                  <div className="text-3xl font-black text-slate-800 mb-2 select-none leading-none">
+                <div key={step.title} className="bg-white dark:bg-slate-800/40 shadow-sm dark:shadow-none border border-slate-200 dark:border-slate-700/50 rounded-xl p-5 hover:border-blue-500/40 transition-colors duration-300">
+                  <div className="text-3xl font-black text-slate-200 dark:text-slate-800 mb-2 select-none leading-none">
                     {String(i + 1).padStart(2, '0')}
                   </div>
-                  <h3 className="font-semibold text-slate-200 mb-1.5 text-sm">{step.title}</h3>
-                  <p className="text-slate-500 text-xs leading-relaxed">{step.body}</p>
+                  <h3 className="font-semibold text-slate-800 dark:text-slate-200 mb-1.5 text-sm">{step.title}</h3>
+                  <p className="text-slate-500 dark:text-slate-500 text-xs leading-relaxed">{step.body}</p>
                 </div>
               ))}
             </div>
@@ -166,9 +166,9 @@ export default async function ServiceDetailPage({
 
       {/* Related projects */}
       {relatedProjects.length > 0 && (
-        <section className="py-14 bg-slate-900">
+        <section className="py-14 bg-slate-50 dark:bg-slate-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-bold text-slate-100 mb-6">Case Studies</h2>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-6">Case Studies</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {relatedProjects.map((p) => (
                 <Link key={p.slug} href={`/portfolio/${p.slug}`} className="block">
@@ -182,23 +182,23 @@ export default async function ServiceDetailPage({
 
       {/* FAQ */}
       {extras && (
-        <section className="py-14 bg-slate-950">
+        <section className="py-14 bg-white dark:bg-slate-950">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-bold text-slate-100 mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-6">Frequently Asked Questions</h2>
             <FAQAccordion faqs={extras.faqs} />
           </div>
         </section>
       )}
 
       {/* CTA */}
-      <section className="py-12 bg-slate-900 border-t border-slate-800/60">
+      <section className="py-12 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden bg-gradient-to-br from-blue-900/40 via-indigo-900/20 to-slate-900/60 border border-blue-500/20 rounded-2xl p-8 text-center">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-px bg-gradient-to-r from-transparent via-blue-500/60 to-transparent" />
-            <h2 className="text-xl font-bold text-slate-100 mb-2">Ready to Get Started?</h2>
-            <p className="text-slate-400 text-sm mb-5">Book a free 30-minute call — no commitment, no sales pitch.</p>
+          <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50 dark:from-blue-900/40 dark:via-indigo-900/20 dark:to-slate-900/60 border border-blue-200 dark:border-blue-500/20 rounded-2xl p-8 text-center">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent" />
+            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">Ready to Get Started?</h2>
+            <p className="text-slate-600 dark:text-slate-400 text-sm mb-5">Tell us about your project — no commitment, no sales pitch.</p>
             <Link href="/contact" className="inline-flex items-center justify-center px-5 py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition-all duration-200 shadow-lg shadow-blue-500/20 text-sm">
-              Book a Free Call
+              Get in Touch
             </Link>
           </div>
         </div>

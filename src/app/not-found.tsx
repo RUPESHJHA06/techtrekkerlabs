@@ -10,7 +10,7 @@ const quickLinks = [
 
 export default function NotFound() {
   return (
-    <main className="relative flex-1 flex items-center justify-center min-h-[70vh] bg-slate-950 overflow-hidden">
+    <main className="relative flex-1 flex items-center justify-center min-h-[70vh] bg-white dark:bg-slate-950 overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[120px]" />
@@ -20,7 +20,7 @@ export default function NotFound() {
       <div className="relative text-center px-4">
         {/* Big 404 */}
         <div className="relative inline-block mb-6 select-none">
-          <span className="text-[9rem] md:text-[13rem] font-black leading-none text-slate-800/80">
+          <span className="text-[9rem] md:text-[13rem] font-black leading-none text-slate-100 dark:text-slate-800/80">
             404
           </span>
           <span className="absolute inset-0 flex items-center justify-center text-[9rem] md:text-[13rem] font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-blue-400/40 to-indigo-600/20 blur-[2px]">
@@ -28,8 +28,8 @@ export default function NotFound() {
           </span>
         </div>
 
-        <h1 className="text-2xl font-bold text-slate-100 mb-3">Page not found</h1>
-        <p className="text-slate-400 text-sm mb-8 max-w-sm mx-auto leading-relaxed">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3">Page not found</h1>
+        <p className="text-slate-500 dark:text-slate-400 text-sm mb-8 max-w-sm mx-auto leading-relaxed">
           The page you&apos;re looking for doesn&apos;t exist or has been moved. Let&apos;s get you back on track.
         </p>
 
@@ -42,7 +42,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 border border-slate-700 text-slate-300 font-semibold rounded-lg hover:border-blue-500/50 hover:text-blue-400 transition-all duration-200 text-sm"
+            className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold rounded-lg hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 text-sm"
           >
             Contact Us
           </Link>
@@ -53,7 +53,7 @@ export default function NotFound() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-slate-500 hover:text-blue-400 text-sm transition-colors duration-150"
+              className="text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors duration-150"
             >
               {link.label}
             </Link>

@@ -3,20 +3,20 @@ import ScrollReveal from '@/components/ScrollReveal';
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-14 md:py-20 bg-slate-950">
+    <section className="py-14 md:py-20 bg-blue-50/40 dark:bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-slate-100 mb-2">What Our Clients Say</h2>
-            <p className="text-slate-400 text-sm">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">What Our Clients Say</h2>
+            <p className="text-slate-600 dark:text-slate-400 text-sm">
               Honest words from real people — coming soon as we complete our first projects.
             </p>
           </div>
         </ScrollReveal>
 
         <ScrollReveal>
-          <div className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-8 text-center max-w-2xl mx-auto">
-            <p className="text-slate-300 text-sm leading-relaxed mb-6">
+          <div className="bg-white dark:bg-slate-800/40 shadow-[0_2px_12px_rgba(0,0,0,0.08)] dark:shadow-none border border-slate-200/80 dark:border-slate-700/50 rounded-xl p-8 text-center max-w-2xl mx-auto">
+            <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6">
               We&apos;re just getting started. Testimonials from real clients will appear here as we complete projects.
               Reach out and let&apos;s build something great together.
             </p>
