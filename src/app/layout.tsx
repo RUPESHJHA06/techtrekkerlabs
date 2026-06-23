@@ -70,7 +70,10 @@ const jsonLd = {
     contactType: 'customer service',
     email: 'contact@techtrekkerlabs.com',
   },
-  sameAs: [],
+  sameAs: [
+    'https://www.instagram.com/techtrekker_labs/',
+    'https://www.linkedin.com/company/132944038/',
+  ],
 };
 
 export default function RootLayout({

@@ -4,6 +4,20 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { TranslationKey } from '@/lib/translations';
+import { InstagramIcon, LinkedInIcon } from '@/lib/icons';
+
+const socialLinks = [
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/techtrekker_labs/',
+    icon: InstagramIcon,
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/132944038/',
+    icon: LinkedInIcon,
+  },
+];
 
 const companyLinkKeys: { key: TranslationKey; href: string }[] = [
   { key: 'nav_about', href: '/about' },
@@ -29,10 +43,24 @@ export default function Footer() {
               <span className="font-bold text-slate-900 dark:text-slate-100 text-lg tracking-tight">TechTrekker Labs</span>
             </Link>
             <p className="text-slate-500 dark:text-slate-500 text-sm leading-relaxed max-w-xs">{t('footer_tagline')}</p>
-            <div className="mt-4">
-              <a href="mailto:contact@techtrekkerlabs.com" className="text-slate-500 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors">
+            <div className="mt-4 space-y-2">
+              <a href="mailto:contact@techtrekkerlabs.com" className="block text-slate-500 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors">
                 contact@techtrekkerlabs.com
               </a>
+              <div className="flex items-center gap-3 pt-1">
+                {socialLinks.map(({ label, href, icon: Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="p-2 rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/50 transition-all duration-150"
+                  >
+                    <Icon className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
