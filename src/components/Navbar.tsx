@@ -36,7 +36,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-            <Image src="/logo.png" alt="TechTrekker Labs" width={36} height={36} className="rounded-full" priority />
+            <Image src="/logo.png" alt="TechTrekker Labs" width={42} height={42} className="rounded-full" priority />
             <span className="font-bold text-slate-900 dark:text-slate-100 text-lg tracking-tight">TechTrekker Labs</span>
           </Link>
 

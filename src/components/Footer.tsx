@@ -25,7 +25,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2.5 mb-4">
-              <Image src="/logo.png" alt="TechTrekker Labs" width={36} height={36} className="rounded-full" />
+              <Image src="/logo.png" alt="TechTrekker Labs" width={42} height={42} className="rounded-full" />
               <span className="font-bold text-slate-900 dark:text-slate-100 text-lg tracking-tight">TechTrekker Labs</span>
             </Link>
             <p className="text-slate-500 dark:text-slate-500 text-sm leading-relaxed max-w-xs">{t('footer_tagline')}</p>
