@@ -27,8 +27,13 @@ export const metadata: Metadata = {
     'TechTrekker Labs builds secure mobile apps, websites, AI-powered systems, and cybersecurity solutions for modern businesses.',
   keywords: ['IT agency', 'mobile app development', 'web development', 'cybersecurity', 'AI integration'],
   icons: {
-    icon: '/icon.png',
-    apple: '/apple-icon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/icon.png', sizes: '192x192' },
+      { url: '/icon-512.png', sizes: '512x512' },
+    ],
+    apple: [{ url: '/apple-icon.png', sizes: '180x180' }],
+    shortcut: '/favicon.ico',
   },
   openGraph: {
     type: 'website',
