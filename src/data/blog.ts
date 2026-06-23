@@ -18,7 +18,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Why Every Business Needs a Cybersecurity Strategy in 2025',
     excerpt:
       "Cyber threats are evolving rapidly. Here's how small and mid-size businesses can build a pragmatic security strategy without breaking the bank.",
-    author: 'Arjun Mehta',
+    author: 'TechTrekker Labs Team',
     date: 'May 14, 2025',
     readTime: '5 min read',
     category: 'Cybersecurity',
@@ -38,7 +38,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Building Scalable Mobile Apps with React Native',
     excerpt:
       'A practical guide to architecture, state management, and performance optimisation for production React Native applications.',
-    author: 'Priya Sharma',
+    author: 'TechTrekker Labs Team',
     date: 'April 28, 2025',
     readTime: '7 min read',
     category: 'Mobile Dev',
@@ -58,7 +58,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Integrating LLMs into Your Product: A Step-by-Step Guide',
     excerpt:
       'From prompt engineering to production deployment — everything you need to know about shipping a reliable LLM-powered feature.',
-    author: 'Rohan Patel',
+    author: 'TechTrekker Labs Team',
     date: 'April 10, 2025',
     readTime: '8 min read',
     category: 'AI & Automation',
@@ -78,7 +78,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Next.js vs. Traditional React: When to Use Each',
     excerpt:
       'A clear breakdown of when to choose Next.js over plain React, covering SSR, SSG, ISR, streaming, and routing trade-offs.',
-    author: 'Ananya Singh',
+    author: 'TechTrekker Labs Team',
     date: 'March 22, 2025',
     readTime: '6 min read',
     category: 'Web Dev',

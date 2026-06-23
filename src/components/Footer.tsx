@@ -34,8 +34,8 @@ export default function Footer() {
               Building secure, scalable, and intelligent digital solutions for modern businesses.
             </p>
             <div className="mt-4">
-              <a href="mailto:hello@techtrekkerlabs.com" className="text-slate-500 hover:text-blue-400 text-sm transition-colors">
-                hello@techtrekkerlabs.com
+              <a href="mailto:contact@techtrekkerlabs.com" className="text-slate-500 hover:text-blue-400 text-sm transition-colors">
+                contact@techtrekkerlabs.com
               </a>
             </div>
           </div>

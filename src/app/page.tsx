@@ -3,7 +3,6 @@ import HeroSection from '@/components/HeroSection';
 import ServiceCard from '@/components/ServiceCard';
 import PortfolioCard from '@/components/PortfolioCard';
 import BlogCard from '@/components/BlogCard';
-import TrustedByBar from '@/components/TrustedByBar';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -19,17 +18,16 @@ const whyUs = [
 ];
 
 const stats = [
-  { value: 50, suffix: '+', label: 'Projects Delivered' },
-  { value: 30, suffix: '+', label: 'Happy Clients' },
   { value: 4, suffix: '', label: 'Core Services' },
-  { value: 5, suffix: '+', label: 'Years Experience' },
+  { value: 8, suffix: '+', label: 'Technologies We Use' },
+  { value: 100, suffix: '%', label: 'Client Transparency' },
+  { value: 24, suffix: 'h', label: 'Response Time' },
 ];
 
 export default function HomePage() {
   return (
     <main>
       <HeroSection />
-      <TrustedByBar />
 
       {/* ── Services ── */}
       <section className="py-14 md:py-20 bg-slate-900">
@@ -38,7 +36,7 @@ export default function HomePage() {
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-slate-100 mb-2">What We Do</h2>
               <p className="text-slate-400 text-sm max-w-lg">
-                Full-stack digital solutions — built with security and scalability in mind.
+                From mobile apps to AI tools — we build whatever your business needs, end to end.
               </p>
             </div>
           </ScrollReveal>

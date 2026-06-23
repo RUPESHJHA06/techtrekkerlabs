@@ -47,6 +47,16 @@ export default function PortfolioPage() {
         </div>
       </section>
 
+      {/* Honest note */}
+      <section className="py-6 bg-slate-900 border-b border-slate-800/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-slate-400 text-sm leading-relaxed">
+            We are a new agency. More client work will be added here as projects ship.{' '}
+            <span className="text-blue-400 font-medium">Real &gt; impressive but fake.</span>
+          </p>
+        </div>
+      </section>
+
       {/* Projects grid */}
       <section className="py-12 md:py-16 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

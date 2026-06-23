@@ -41,9 +41,8 @@ const jsonLd = {
   description: 'IT services agency specialising in mobile apps, web development, cybersecurity, and AI integration.',
   contactPoint: {
     '@type': 'ContactPoint',
-    telephone: '+1-555-123-4567',
     contactType: 'customer service',
-    email: 'hello@techtrekkerlabs.com',
+    email: 'contact@techtrekkerlabs.com',
   },
   sameAs: [],
 };

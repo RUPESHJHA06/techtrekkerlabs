@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import BlogCard from '@/components/BlogCard';
 import { blogPosts } from '@/data/blog';
 
@@ -30,23 +31,25 @@ export default function BlogPage() {
       {featured && (
         <section className="py-10 bg-slate-900 border-b border-slate-800/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative overflow-hidden bg-slate-800/40 border border-slate-700/50 rounded-2xl p-8 md:p-10 hover:border-blue-500/30 transition-colors duration-300">
-              <div className="h-0.5 absolute top-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-indigo-600" />
-              <span className={`inline-block px-2 py-0.5 text-xs font-medium rounded mb-3 ${featured.categoryColor}`}>
-                {featured.category}
-              </span>
-              <h2 className="text-xl md:text-2xl font-bold text-slate-100 mb-3 max-w-2xl leading-snug">
-                {featured.title}
-              </h2>
-              <p className="text-slate-400 text-sm leading-relaxed mb-5 max-w-2xl">{featured.excerpt}</p>
-              <div className="flex items-center gap-3 text-xs text-slate-500">
-                <span className="text-slate-300 font-medium">{featured.author}</span>
-                <span>&middot;</span>
-                <span>{featured.date}</span>
-                <span>&middot;</span>
-                <span>{featured.readTime}</span>
+            <Link href={`/blog/${featured.slug}`} className="block group">
+              <div className="relative overflow-hidden bg-slate-800/40 border border-slate-700/50 rounded-2xl p-8 md:p-10 hover:border-blue-500/30 transition-colors duration-300">
+                <div className="h-0.5 absolute top-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-indigo-600" />
+                <span className={`inline-block px-2 py-0.5 text-xs font-medium rounded mb-3 ${featured.categoryColor}`}>
+                  {featured.category}
+                </span>
+                <h2 className="text-xl md:text-2xl font-bold text-slate-100 mb-3 max-w-2xl leading-snug group-hover:text-blue-400 transition-colors duration-200">
+                  {featured.title}
+                </h2>
+                <p className="text-slate-400 text-sm leading-relaxed mb-5 max-w-2xl">{featured.excerpt}</p>
+                <div className="flex items-center gap-3 text-xs text-slate-500">
+                  <span className="text-slate-300 font-medium">{featured.author}</span>
+                  <span>&middot;</span>
+                  <span>{featured.date}</span>
+                  <span>&middot;</span>
+                  <span>{featured.readTime}</span>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </section>
       )}
@@ -59,7 +62,9 @@ export default function BlogPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {blogPosts.map((post) => (
-              <BlogCard key={post.id} {...post} />
+              <Link key={post.id} href={`/blog/${post.slug}`} className="block h-full">
+                <BlogCard {...post} />
+              </Link>
             ))}
           </div>
         </div>

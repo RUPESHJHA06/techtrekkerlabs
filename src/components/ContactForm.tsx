@@ -9,28 +9,75 @@ interface FormState {
   message: string;
 }
 
+interface Errors {
+  name?: string;
+  email?: string;
+  message?: string;
+}
+
 const empty: FormState = { name: '', email: '', subject: '', message: '' };
 
 const inputCls =
   'w-full px-4 py-2.5 bg-slate-800/60 border border-slate-700 rounded-lg text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/50 transition-all duration-200';
 
+const errorCls = 'border-red-500/60 focus:ring-red-500/30 focus:border-red-500/50';
+
+function validate(form: FormState): Errors {
+  const errors: Errors = {};
+  if (!form.name.trim()) errors.name = 'Name is required';
+  if (!form.email.trim()) {
+    errors.email = 'Email is required';
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+    errors.email = 'Enter a valid email address';
+  }
+  if (!form.message.trim()) errors.message = 'Message is required';
+  return errors;
+}
+
 export default function ContactForm() {
   const [form, setForm] = useState<FormState>(empty);
+  const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState('');
 
   const set =
     (field: keyof FormState) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
+      if (errors[field as keyof Errors]) {
+        setErrors((prev) => ({ ...prev, [field]: undefined }));
+      }
+    };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const errs = validate(form);
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
+    }
+
     setLoading(true);
-    setTimeout(() => {
+    setServerError('');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setServerError(data.error || 'Something went wrong. Please try again.');
+      } else {
+        setSubmitted(true);
+      }
+    } catch {
+      setServerError('Network error. Please try WhatsApp or email us directly.');
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 800);
+    }
   };
 
   if (submitted) {
@@ -44,7 +91,7 @@ export default function ContactForm() {
         <h3 className="text-slate-100 font-semibold text-xl mb-2">Message Sent!</h3>
         <p className="text-slate-400 text-sm">We&apos;ll get back to you within 24 hours.</p>
         <button
-          onClick={() => { setSubmitted(false); setForm(empty); }}
+          onClick={() => { setSubmitted(false); setForm(empty); setErrors({}); }}
           className="mt-5 text-blue-400 text-sm hover:text-blue-300 transition-colors"
         >
           Send another message
@@ -60,13 +107,29 @@ export default function ContactForm() {
           <label htmlFor="name" className="block text-xs font-medium text-slate-400 mb-1.5">
             Name <span className="text-red-400">*</span>
           </label>
-          <input id="name" type="text" required value={form.name} onChange={set('name')} placeholder="John Doe" className={inputCls} />
+          <input
+            id="name"
+            type="text"
+            value={form.name}
+            onChange={set('name')}
+            placeholder="John Doe"
+            className={`${inputCls} ${errors.name ? errorCls : ''}`}
+          />
+          {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}
         </div>
         <div>
           <label htmlFor="email" className="block text-xs font-medium text-slate-400 mb-1.5">
             Email <span className="text-red-400">*</span>
           </label>
-          <input id="email" type="email" required value={form.email} onChange={set('email')} placeholder="john@company.com" className={inputCls} />
+          <input
+            id="email"
+            type="email"
+            value={form.email}
+            onChange={set('email')}
+            placeholder="john@company.com"
+            className={`${inputCls} ${errors.email ? errorCls : ''}`}
+          />
+          {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
         </div>
       </div>
       <div>
@@ -79,14 +142,21 @@ export default function ContactForm() {
         </label>
         <textarea
           id="message"
-          required
           rows={5}
           value={form.message}
           onChange={set('message')}
           placeholder="Tell us about your project..."
-          className={`${inputCls} resize-none`}
+          className={`${inputCls} resize-none ${errors.message ? errorCls : ''}`}
         />
+        {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
       </div>
+
+      {serverError && (
+        <div className="px-4 py-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">
+          {serverError}
+        </div>
+      )}
+
       <button
         type="submit"
         disabled={loading}
