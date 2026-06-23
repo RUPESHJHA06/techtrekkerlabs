@@ -26,6 +26,10 @@ export const metadata: Metadata = {
   description:
     'TechTrekker Labs builds secure mobile apps, websites, AI-powered systems, and cybersecurity solutions for modern businesses.',
   keywords: ['IT agency', 'mobile app development', 'web development', 'cybersecurity', 'AI integration'],
+  icons: {
+    icon: '/icon.png',
+    apple: '/apple-icon.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -33,11 +37,20 @@ export const metadata: Metadata = {
     siteName: 'TechTrekker Labs',
     title: 'TechTrekker Labs — IT Services Agency',
     description: 'TechTrekker Labs builds secure mobile apps, websites, AI-powered systems, and cybersecurity solutions for modern businesses.',
+    images: [
+      {
+        url: 'https://techtrekkerlabs.com/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'TechTrekker Labs — IT Services Agency',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'TechTrekker Labs — IT Services Agency',
     description: 'TechTrekker Labs builds secure mobile apps, websites, AI-powered systems, and cybersecurity solutions for modern businesses.',
+    images: ['https://techtrekkerlabs.com/og-image.png'],
   },
 };
 
