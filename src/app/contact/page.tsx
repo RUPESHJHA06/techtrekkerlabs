@@ -8,6 +8,9 @@ import ClientPageHeader from '@/components/ClientPageHeader';
 export const metadata: Metadata = {
   title: 'Contact',
   description: 'Get in touch with TechTrekker Labs to start your project or ask us anything.',
+  alternates: {
+    canonical: '/contact',
+  },
 };
 
 const contactInfo = [

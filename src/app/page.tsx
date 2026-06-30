@@ -13,6 +13,33 @@ import { projects } from '@/data/portfolio';
 import { blogPosts } from '@/data/blog';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+const serviceLinks = [
+  { href: '/services/web-development', label: 'web development' },
+  { href: '/services/mobile-app-development', label: 'mobile app development' },
+  { href: '/services/ai-solutions', label: 'AI solutions' },
+  { href: '/services/saas-development', label: 'SaaS development' },
+  { href: '/services/cybersecurity', label: 'cybersecurity consulting' },
+  { href: '/services/cloud-solutions', label: 'cloud solutions' },
+];
+
+const homepageFaqs = [
+  {
+    question: 'What custom software development services does TechTrekker Labs offer?',
+    answer:
+      'We build custom websites, mobile apps, AI-powered products, SaaS platforms, cybersecurity programs, and cloud-native systems for startups and enterprises.',
+  },
+  {
+    question: 'Do you work with startups that only have an idea or MVP plan?',
+    answer:
+      'Yes. We help startup teams validate product scope, design an MVP roadmap, build the first release, and prepare the architecture for future scale.',
+  },
+  {
+    question: 'Why hire a custom software development company instead of freelancers?',
+    answer:
+      'A software development company gives you product strategy, UI/UX, engineering, QA, security, deployment, and ongoing support under one accountable team.',
+  },
+];
+
 export default function HomePage() {
   const { t } = useLanguage();
 
@@ -41,6 +68,17 @@ export default function HomePage() {
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">{t('sec_services_title')}</h2>
               <p className="text-slate-600 dark:text-slate-400 text-sm max-w-lg">{t('sec_services_desc')}</p>
+              <p className="text-slate-600 dark:text-slate-400 text-sm max-w-3xl mt-4 leading-relaxed">
+                Explore our focused services for{' '}
+                {serviceLinks.map((link, index) => (
+                  <span key={link.href}>
+                    <Link href={link.href} className="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
+                      {link.label}
+                    </Link>
+                    {index < serviceLinks.length - 2 ? ', ' : index === serviceLinks.length - 2 ? ', and ' : '.'}
+                  </span>
+                ))}
+              </p>
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -155,6 +193,30 @@ export default function HomePage() {
             <Link href="/blog" className="text-blue-600 dark:text-blue-400 text-sm font-medium hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
               {t('view_all_articles')}
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="py-14 md:py-20 bg-white dark:bg-slate-950">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">Custom Software Development FAQs</h2>
+              <p className="text-slate-600 dark:text-slate-400 text-sm max-w-2xl">
+                Straight answers for teams comparing software development companies, planning a startup MVP, or scaling a custom product.
+              </p>
+            </div>
+          </ScrollReveal>
+          <div className="space-y-3">
+            {homepageFaqs.map((faq, i) => (
+              <ScrollReveal key={faq.question} delay={i * 70}>
+                <article className="bg-white dark:bg-slate-800/40 shadow-[0_1px_3px_rgba(0,0,0,0.07)] dark:shadow-none border border-slate-200/80 dark:border-slate-700/50 rounded-xl p-5">
+                  <h3 className="font-semibold text-slate-800 dark:text-slate-200 mb-2 text-sm">{faq.question}</h3>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{faq.answer}</p>
+                </article>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>

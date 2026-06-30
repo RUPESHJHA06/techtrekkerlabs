@@ -7,6 +7,9 @@ import ClientPageHeader from '@/components/ClientPageHeader';
 export const metadata: Metadata = {
   title: 'Portfolio',
   description: 'Explore mobile apps, web applications, cybersecurity tools, and AI solutions we have built.',
+  alternates: {
+    canonical: '/portfolio',
+  },
 };
 
 const categories = ['All', 'Mobile App', 'Web App', 'Cybersecurity', 'AI Integration'];

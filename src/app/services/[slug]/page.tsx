@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { services } from '@/data/services';
 import { ServiceIconMap } from '@/lib/icons';
@@ -8,11 +8,17 @@ import PortfolioCard from '@/components/PortfolioCard';
 import { projects } from '@/data/portfolio';
 import type { FAQ } from '@/data/faqs';
 
+const legacyServiceSlugs: Record<string, string> = {
+  'mobile-app': 'mobile-app-development',
+  'web-dev': 'web-development',
+  'ai-integration': 'ai-solutions',
+};
+
 const serviceExtras: Record<
   string,
   { process: { title: string; body: string }[]; faqs: FAQ[]; relatedSlugs: string[] }
 > = {
-  'mobile-app': {
+  'mobile-app-development': {
     process: [
       { title: 'Discovery & UX Research', body: 'We study your users, map their journeys, and define the minimum lovable product before any design begins.' },
       { title: 'Design & Prototype', body: 'High-fidelity Figma prototypes tested with real users. Interactions, edge cases, and platform guidelines all resolved before development.' },
@@ -26,7 +32,7 @@ const serviceExtras: Record<
     ],
     relatedSlugs: ['securevault', 'fintrack-mobile'],
   },
-  'web-dev': {
+  'web-development': {
     process: [
       { title: 'Discovery & Architecture', body: 'We map your user flows, define your content model, choose the right rendering strategy (SSR, SSG, ISR), and design the data architecture before writing code.' },
       { title: 'Design System & UI', body: 'A component-first design system built in Figma, then implemented in code — ensuring consistency at any scale.' },
@@ -54,7 +60,7 @@ const serviceExtras: Record<
     ],
     relatedSlugs: ['threatscan-pro', 'securevault'],
   },
-  'ai-integration': {
+  'ai-solutions': {
     process: [
       { title: 'AI Opportunity Audit', body: 'We review your existing product and workflows to identify where AI creates the highest ROI — not where it sounds exciting.' },
       { title: 'Proof of Concept', body: 'A focused 2-week POC that proves the core AI behaviour works in your context before we build production infrastructure.' },
@@ -67,6 +73,34 @@ const serviceExtras: Record<
       { question: 'How much does AI integration cost compared to traditional features?', answer: 'Initial build cost is similar to or slightly higher than traditional features. The key difference is ongoing inference cost, which scales with usage. We model your expected usage patterns upfront so you have a realistic cost projection before committing.' },
     ],
     relatedSlugs: ['retailbot-ai', 'legaldocs-automator'],
+  },
+  'saas-development': {
+    process: [
+      { title: 'Product Scope', body: 'We define your users, pricing model, tenant structure, core workflows, and the minimum feature set needed for launch.' },
+      { title: 'Platform Architecture', body: 'We design secure data models, subscription flows, permissions, APIs, and infrastructure that can scale past the MVP.' },
+      { title: 'SaaS Build', body: 'We build dashboards, onboarding, billing, analytics, integrations, and admin tools with clean, maintainable engineering.' },
+      { title: 'Launch & Improve', body: 'We deploy, monitor, measure usage, and keep improving the product based on user behaviour and business goals.' },
+    ],
+    faqs: [
+      { question: 'Can you build a SaaS MVP for a startup?', answer: 'Yes. We help startup teams prioritise the first paid version, build the product, set up billing, and prepare the technical foundation for future growth.' },
+      { question: 'Do you support multi-tenant SaaS architecture?', answer: 'Yes. We design tenant-aware data models, access controls, audit trails, billing boundaries, and admin workflows for B2B and B2C SaaS products.' },
+      { question: 'Can you integrate Stripe or other subscription billing tools?', answer: 'Yes. We integrate Stripe and similar payment platforms for recurring subscriptions, invoices, trials, upgrades, downgrades, and account lifecycle events.' },
+    ],
+    relatedSlugs: ['legaldocs-automator', 'medconnect-portal'],
+  },
+  'cloud-solutions': {
+    process: [
+      { title: 'Infrastructure Audit', body: 'We review your current hosting, deployment, costs, security posture, and reliability risks before recommending changes.' },
+      { title: 'Cloud Architecture', body: 'We design the right blend of managed services, serverless components, containers, databases, monitoring, and network controls.' },
+      { title: 'Migration & Automation', body: 'We implement CI/CD, infrastructure automation, observability, backups, and safe migration plans with minimal downtime.' },
+      { title: 'Operate & Optimise', body: 'We monitor performance, improve reliability, reduce cloud waste, and keep your infrastructure aligned with product growth.' },
+    ],
+    faqs: [
+      { question: 'Which cloud platforms do you work with?', answer: 'We work with AWS, Azure, Google Cloud, Vercel, and modern managed infrastructure providers depending on the application needs and team workflow.' },
+      { question: 'Can you migrate an existing application to the cloud?', answer: 'Yes. We plan staged migrations, validate performance and security, and reduce downtime risk with backups, observability, and rollback paths.' },
+      { question: 'Do cloud solutions include DevOps and CI/CD?', answer: 'Yes. We set up deployment pipelines, environment management, monitoring, alerts, and infrastructure automation so teams can ship reliably.' },
+    ],
+    relatedSlugs: ['threatscan-pro', 'fintrack-mobile'],
   },
 };
 
@@ -82,7 +116,19 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = services.find((s) => s.id === slug);
   if (!service) return {};
-  return { title: service.title, description: service.description };
+  return {
+    title: service.title,
+    description: service.description,
+    alternates: {
+      canonical: `/services/${service.id}`,
+    },
+    openGraph: {
+      title: `${service.title} | TechTrekker Labs`,
+      description: service.description,
+      url: `/services/${service.id}`,
+      type: 'website',
+    },
+  };
 }
 
 export default async function ServiceDetailPage({
@@ -91,6 +137,10 @@ export default async function ServiceDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  if (legacyServiceSlugs[slug]) {
+    redirect(`/services/${legacyServiceSlugs[slug]}`);
+  }
+
   const service = services.find((s) => s.id === slug);
   if (!service) notFound();
 

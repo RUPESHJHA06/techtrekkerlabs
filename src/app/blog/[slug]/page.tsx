@@ -19,6 +19,15 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
+    openGraph: {
+      title: `${post.title} | TechTrekker Labs`,
+      description: post.excerpt,
+      url: `/blog/${post.slug}`,
+      type: 'article',
+    },
   };
 }
 

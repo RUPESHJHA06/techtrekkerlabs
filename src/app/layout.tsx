@@ -6,6 +6,11 @@ import Footer from '@/components/Footer';
 import FloatingCTA from '@/components/FloatingCTA';
 import { Providers } from '@/components/Providers';
 
+const siteUrl = 'https://techtrekkerlabs.com';
+const siteTitle = 'Custom Software Development Company | TechTrekker Labs';
+const siteDescription =
+  'TechTrekker Labs is a software development company offering web development, mobile app development, AI solutions, SaaS development, cybersecurity, and cloud services for startups and enterprises.';
+
 const geist = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -19,13 +24,40 @@ const notoSansDevanagari = Noto_Sans_Devanagari({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: 'TechTrekker Labs — IT Services Agency',
+    default: siteTitle,
     template: '%s | TechTrekker Labs',
   },
-  description:
-    'TechTrekker Labs builds secure mobile apps, websites, AI-powered systems, and cybersecurity solutions for modern businesses.',
-  keywords: ['IT agency', 'mobile app development', 'web development', 'cybersecurity', 'AI integration'],
+  description: siteDescription,
+  keywords: [
+    'software development company',
+    'custom software development company',
+    'web development company',
+    'mobile app development company',
+    'AI solutions company',
+    'SaaS development company',
+    'cybersecurity consulting',
+    'cloud solutions company',
+    'startup software development',
+    'enterprise software development',
+    'Next.js development company',
+    'React development services',
+  ],
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '32x32' },
@@ -38,24 +70,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://techtrekkerlabs.com',
+    url: '/',
     siteName: 'TechTrekker Labs',
-    title: 'TechTrekker Labs — IT Services Agency',
-    description: 'TechTrekker Labs builds secure mobile apps, websites, AI-powered systems, and cybersecurity solutions for modern businesses.',
+    title: siteTitle,
+    description: siteDescription,
     images: [
       {
-        url: 'https://techtrekkerlabs.com/og-image.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'TechTrekker Labs — IT Services Agency',
+        alt: 'TechTrekker Labs custom software development company',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TechTrekker Labs — IT Services Agency',
-    description: 'TechTrekker Labs builds secure mobile apps, websites, AI-powered systems, and cybersecurity solutions for modern businesses.',
-    images: ['https://techtrekkerlabs.com/og-image.png'],
+    title: siteTitle,
+    description: siteDescription,
+    images: ['/og-image.png'],
   },
 };
 
@@ -63,16 +95,38 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'TechTrekker Labs',
-  url: 'https://techtrekkerlabs.com',
-  description: 'IT services agency specialising in mobile apps, web development, cybersecurity, and AI integration.',
+  url: siteUrl,
+  logo: `${siteUrl}/logo.png`,
+  email: 'contact@techtrekkerlabs.com',
+  description: siteDescription,
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer service',
     email: 'contact@techtrekkerlabs.com',
+    areaServed: ['US', 'IN', 'GB', 'CA', 'AU'],
+    availableLanguage: ['English', 'Hindi'],
   },
   sameAs: [
     'https://www.instagram.com/techtrekker_labs/',
     'https://www.linkedin.com/company/132944038/',
+  ],
+  areaServed: [
+    { '@type': 'Country', name: 'United States' },
+    { '@type': 'Country', name: 'India' },
+    { '@type': 'Country', name: 'United Kingdom' },
+    { '@type': 'Country', name: 'Canada' },
+    { '@type': 'Country', name: 'Australia' },
+  ],
+  knowsAbout: [
+    'Custom software development',
+    'Web development',
+    'Mobile app development',
+    'AI solutions',
+    'SaaS development',
+    'Cybersecurity consulting',
+    'Cloud solutions',
+    'Startup software development',
+    'Enterprise software engineering',
   ],
 };
 

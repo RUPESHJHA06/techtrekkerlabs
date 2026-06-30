@@ -9,7 +9,7 @@ export interface Service {
 
 export const services: Service[] = [
   {
-    id: 'mobile-app',
+    id: 'mobile-app-development',
     icon: 'mobile',
     title: 'Mobile App Development',
     description:
@@ -30,9 +30,9 @@ export const services: Service[] = [
     ],
   },
   {
-    id: 'web-dev',
+    id: 'web-development',
     icon: 'web',
-    title: 'Website Development',
+    title: 'Web Development',
     description:
       'Fast, responsive, and SEO-optimised websites and web applications built with modern frameworks.',
     detail:
@@ -49,7 +49,7 @@ export const services: Service[] = [
   {
     id: 'cybersecurity',
     icon: 'security',
-    title: 'Cybersecurity Services',
+    title: 'Cybersecurity Consulting',
     description:
       'Protect your business with penetration testing, security audits, and compliance consulting.',
     detail:
@@ -64,9 +64,9 @@ export const services: Service[] = [
     ],
   },
   {
-    id: 'ai-integration',
+    id: 'ai-solutions',
     icon: 'ai',
-    title: 'AI Integration & Automation',
+    title: 'AI Solutions & Automation',
     description:
       'Embed AI capabilities into your products — LLM-powered apps, intelligent chatbots, and workflow automation.',
     detail:
@@ -78,6 +78,44 @@ export const services: Service[] = [
       'Process & Workflow Automation',
       'Predictive Analytics',
       'AI Security Review',
+    ],
+  },
+  {
+    id: 'saas-development',
+    icon: 'web',
+    title: 'SaaS Development',
+    description:
+      'Subscription-ready SaaS platforms with secure architecture, billing, dashboards, analytics, and scalable cloud deployment.',
+    detail:
+      'We design and build SaaS products from MVP to enterprise scale, including multi-tenant architecture, role-based access, subscription billing, product analytics, admin dashboards, and reliable deployment pipelines.',
+    features: [
+      'SaaS MVP Development',
+      'Multi-Tenant Architecture',
+      'Subscription Billing',
+      'Admin & Customer Dashboards',
+      'Product Analytics',
+      'API Integrations',
+      'Role-Based Access Control',
+      'Scalable Cloud Deployment',
+    ],
+  },
+  {
+    id: 'cloud-solutions',
+    icon: 'web',
+    title: 'Cloud Solutions',
+    description:
+      'Cloud architecture, migration, DevOps automation, and managed infrastructure for secure, scalable digital products.',
+    detail:
+      'We help teams move faster with cloud-native infrastructure, CI/CD pipelines, observability, containerisation, serverless systems, and cost-conscious architecture across AWS, Azure, Google Cloud, and Vercel.',
+    features: [
+      'Cloud Architecture',
+      'AWS, Azure & Google Cloud',
+      'DevOps & CI/CD',
+      'Docker & Containerisation',
+      'Serverless Infrastructure',
+      'Monitoring & Observability',
+      'Cloud Cost Optimisation',
+      'Backup & Disaster Recovery',
     ],
   },
 ];
