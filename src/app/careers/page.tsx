@@ -5,6 +5,9 @@ import ClientPageHeader from '@/components/ClientPageHeader';
 export const metadata: Metadata = {
   title: 'Careers',
   description: 'Join TechTrekker Labs — we are always looking for talented developers and cybersecurity professionals.',
+  alternates: {
+    canonical: '/careers',
+  },
 };
 
 const perks = [

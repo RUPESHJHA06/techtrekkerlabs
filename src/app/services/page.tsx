@@ -8,7 +8,10 @@ import ClientPageHeader from '@/components/ClientPageHeader';
 
 export const metadata: Metadata = {
   title: 'Services',
-  description: 'Mobile app development, website development, cybersecurity, and AI integration services.',
+  description: 'Custom software development services for web development, mobile app development, AI solutions, SaaS development, cybersecurity consulting, and cloud solutions.',
+  alternates: {
+    canonical: '/services',
+  },
 };
 
 const process = [

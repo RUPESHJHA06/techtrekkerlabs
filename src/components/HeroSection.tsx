@@ -27,14 +27,14 @@ export default function HeroSection() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-slate-950 dark:text-slate-50 leading-tight mb-5">
-            {t('hero_h1a')}{' '}
+            Custom Software Development Company for Web, Mobile Apps,{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-400">
-              {t('hero_h1b')}
+              AI & SaaS Solutions
             </span>
           </h1>
 
           <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-8 max-w-xl">
-            {t('hero_desc')}
+            TechTrekker Labs helps startups and enterprises plan, build, and scale secure software products, from high-performance websites and mobile apps to AI automation, SaaS platforms, cybersecurity consulting, and cloud-native systems.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">

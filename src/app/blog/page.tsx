@@ -7,6 +7,9 @@ import ClientPageHeader from '@/components/ClientPageHeader';
 export const metadata: Metadata = {
   title: 'Blog',
   description: 'Insights, guides, and updates from the TechTrekker Labs engineering and security team.',
+  alternates: {
+    canonical: '/blog',
+  },
 };
 
 export default function BlogPage() {

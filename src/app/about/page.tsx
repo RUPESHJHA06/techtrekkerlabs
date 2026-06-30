@@ -5,6 +5,9 @@ import ClientPageHeader from '@/components/ClientPageHeader';
 export const metadata: Metadata = {
   title: 'About Us',
   description: 'Learn about TechTrekker Labs — our story, mission, vision, and why businesses trust us.',
+  alternates: {
+    canonical: '/about',
+  },
 };
 
 const values = [
