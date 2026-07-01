@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import { MenuIcon, XIcon, SunIcon, MoonIcon } from '@/lib/icons';
+import { MenuIcon, XIcon, SunIcon, MoonIcon, InstagramIcon, LinkedInIcon } from '@/lib/icons';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { TranslationKey } from '@/lib/translations';
 
@@ -17,6 +17,11 @@ const navLinkKeys: { key: TranslationKey; href: string }[] = [
   { key: 'nav_careers', href: '/careers' },
   { key: 'nav_blog', href: '/blog' },
   { key: 'nav_contact', href: '/contact' },
+];
+
+const socialLinks = [
+  { label: 'Instagram', href: 'https://www.instagram.com/techtrekker_labs/', icon: InstagramIcon },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/132944038/', icon: LinkedInIcon },
 ];
 
 export default function Navbar() {
@@ -59,6 +64,22 @@ export default function Navbar() {
 
           {/* Desktop controls */}
           <div className="hidden md:flex items-center gap-2">
+            {/* Social links */}
+            <div className="flex items-center gap-1">
+              {socialLinks.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="p-2 rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-150"
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
+
             {/* Language switcher */}
             <div className="flex items-center bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-lg p-0.5">
               <button
@@ -133,6 +154,20 @@ export default function Navbar() {
 
             {/* Mobile controls */}
             <div className="pt-3 flex items-center gap-2">
+              <div className="flex items-center gap-1">
+                {socialLinks.map(({ label, href, icon: Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="p-2 rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-150"
+                  >
+                    <Icon className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
               <div className="flex items-center bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-lg p-0.5">
                 <button
                   onClick={() => setLang('en')}
