@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { blogPosts } from '@/data/blog';
 import BlogCard from '@/components/BlogCard';
+import { InstagramIcon, LinkedInIcon } from '@/lib/icons';
 
 export async function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }));
@@ -149,6 +150,15 @@ export default async function BlogPostPage({
             <Link href="/contact" className="inline-flex items-center justify-center px-5 py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition-all duration-200 shadow-lg shadow-blue-500/20 text-sm">
               Get in Touch
             </Link>
+            <div className="mt-6 pt-5 border-t border-blue-200/60 dark:border-blue-500/10 flex items-center justify-center gap-4">
+              <span className="text-slate-500 dark:text-slate-500 text-xs font-medium">Follow us</span>
+              <a href="https://www.instagram.com/techtrekker_labs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="p-2 rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700/50 transition-all duration-150">
+                <InstagramIcon className="w-4 h-4" />
+              </a>
+              <a href="https://www.linkedin.com/company/132944038/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700/50 transition-all duration-150">
+                <LinkedInIcon className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
       </section>

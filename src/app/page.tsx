@@ -8,6 +8,7 @@ import BlogCard from '@/components/BlogCard';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import ScrollReveal from '@/components/ScrollReveal';
+import { InstagramIcon, LinkedInIcon } from '@/lib/icons';
 import { services } from '@/data/services';
 import { projects } from '@/data/portfolio';
 import { blogPosts } from '@/data/blog';
@@ -236,6 +237,15 @@ export default function HomePage() {
                 <Link href="/services" className="inline-flex items-center justify-center px-6 py-3 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-semibold rounded-lg hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 text-sm">
                   {t('sec_cta_secondary')}
                 </Link>
+              </div>
+              <div className="mt-7 pt-6 border-t border-blue-200/60 dark:border-blue-500/10 flex items-center justify-center gap-4">
+                <span className="text-slate-500 dark:text-slate-500 text-xs font-medium">Follow us</span>
+                <a href="https://www.instagram.com/techtrekker_labs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="p-2 rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700/50 transition-all duration-150">
+                  <InstagramIcon className="w-4 h-4" />
+                </a>
+                <a href="https://www.linkedin.com/company/132944038/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 rounded-lg text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700/50 transition-all duration-150">
+                  <LinkedInIcon className="w-4 h-4" />
+                </a>
               </div>
             </div>
           </ScrollReveal>
