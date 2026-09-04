@@ -17,7 +17,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 1,
     slug: 'cybersecurity-strategy-2025',
-    title: 'Why Every Business Needs a Cybersecurity Strategy in 2025',
+    title: 'Why Every Business Needs a Cybersecurity Strategy in 2026',
     excerpt:
       "Cyber threats are evolving rapidly. Here's how small and mid-size businesses can build a pragmatic security strategy without breaking the bank.",
     author: 'TechTrekker Labs Team',

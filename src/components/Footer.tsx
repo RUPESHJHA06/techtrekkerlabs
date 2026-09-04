@@ -42,9 +42,9 @@ export default function Footer() {
               <Image src="/logo.png" alt="TechTrekker Labs" width={42} height={42} className="rounded-full" />
               <span className="font-bold text-slate-900 dark:text-slate-100 text-lg tracking-tight">TechTrekker Labs</span>
             </Link>
-            <p className="text-slate-500 dark:text-slate-500 text-sm leading-relaxed max-w-xs">{t('footer_tagline')}</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs">{t('footer_tagline')}</p>
             <div className="mt-4 space-y-2">
-              <a href="mailto:contact@techtrekkerlabs.com" className="block text-slate-500 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors">
+              <a href="mailto:contact@techtrekkerlabs.com" className="block text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors">
                 contact@techtrekkerlabs.com
               </a>
               <div className="flex items-center gap-3 pt-1">
@@ -70,7 +70,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {companyLinkKeys.map(({ key, href }) => (
                 <li key={href}>
-                  <Link href={href} className="text-slate-500 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-200 text-sm transition-colors">
+                  <Link href={href} className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 text-sm transition-colors">
                     {t(key)}
                   </Link>
                 </li>
@@ -94,12 +94,12 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-slate-400 dark:text-slate-600 text-xs">
+          <p className="text-slate-400 dark:text-slate-500 text-xs">
             &copy; {new Date().getFullYear()} TechTrekker Labs. {t('footer_rights')}
           </p>
           <div className="flex gap-5">
-            <Link href="/privacy" className="text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-400 text-xs transition-colors">{t('footer_privacy')}</Link>
-            <Link href="/contact" className="text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-400 text-xs transition-colors">{t('footer_contact')}</Link>
+            <Link href="/privacy" className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-400 text-xs transition-colors">{t('footer_privacy')}</Link>
+            <Link href="/contact" className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-400 text-xs transition-colors">{t('footer_contact')}</Link>
           </div>
         </div>
       </div>

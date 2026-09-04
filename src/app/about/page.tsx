@@ -25,7 +25,7 @@ const whyUs = [
 ];
 
 const highlights = [
-  { label: 'Founded', value: '2025' },
+  { label: 'Founded', value: '2026' },
   { label: 'Team', value: 'Lean & Agile' },
   { label: 'Approach', value: 'Requirements First' },
   { label: 'Response Time', value: 'Within 24 hrs' },

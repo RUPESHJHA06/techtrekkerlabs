@@ -52,10 +52,10 @@ export default function HomePage() {
   ];
 
   const stats = [
-    { value: 4,   suffix: '',  label: t('stat_core_services') },
-    { value: 8,   suffix: '+', label: t('stat_technologies') },
-    { value: 100, suffix: '%', label: t('stat_transparency') },
-    { value: 24,  suffix: 'h', label: t('stat_response') },
+    { kind: 'number' as const, value: 4, suffix: '', label: t('stat_core_services') },
+    { kind: 'number' as const, value: 8, suffix: '+', label: t('stat_technologies') },
+    { kind: 'text' as const, text: t('stat_access_value'), label: t('stat_access_label') },
+    { kind: 'number' as const, value: 24, suffix: 'h', label: t('stat_response') },
   ];
 
   return (
@@ -63,13 +63,13 @@ export default function HomePage() {
       <HeroSection />
 
       {/* ── Services ── */}
-      <section className="py-14 md:py-20 bg-slate-50/80 dark:bg-slate-900">
+      <section className="py-16 md:py-20 bg-slate-50/80 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">{t('sec_services_title')}</h2>
-              <p className="text-slate-600 dark:text-slate-400 text-sm max-w-lg">{t('sec_services_desc')}</p>
-              <p className="text-slate-600 dark:text-slate-400 text-sm max-w-3xl mt-4 leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 text-sm max-w-lg">{t('sec_services_desc')}</p>
+              <p className="text-slate-600 dark:text-slate-300 text-sm max-w-3xl mt-4 leading-relaxed">
                 Explore our focused services for{' '}
                 {serviceLinks.map((link, index) => (
                   <span key={link.href}>
@@ -82,11 +82,11 @@ export default function HomePage() {
               </p>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
             {services.map((s, i) => (
               <ScrollReveal key={s.id} delay={i * 70}>
-                <Link href={`/services/${s.id}`} className="block h-full">
-                  <ServiceCard {...s} />
+                <Link href={`/services/${s.id}`} className="block">
+                  <ServiceCard {...s} features={s.features.slice(0, 6)} />
                 </Link>
               </ScrollReveal>
             ))}
@@ -100,13 +100,13 @@ export default function HomePage() {
       </section>
 
       {/* ── Why Choose Us ── */}
-      <section className="py-14 md:py-20 bg-white dark:bg-slate-950">
+      <section className="py-16 md:py-20 bg-white dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <ScrollReveal>
               <div>
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3">{t('sec_why_title')}</h2>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-7">{t('sec_why_desc')}</p>
+                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-7">{t('sec_why_desc')}</p>
                 <div className="space-y-5">
                   {whyUs.map((p) => (
                     <div key={p.title} className="flex gap-4">
@@ -117,7 +117,7 @@ export default function HomePage() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-slate-800 dark:text-slate-200 mb-0.5 text-sm">{p.title}</h3>
-                        <p className="text-slate-500 dark:text-slate-500 text-sm leading-relaxed">{p.body}</p>
+                        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{p.body}</p>
                       </div>
                     </div>
                   ))}
@@ -129,12 +129,16 @@ export default function HomePage() {
               {stats.map((s, i) => (
                 <ScrollReveal key={s.label} delay={i * 80}>
                   <div className="bg-white dark:bg-slate-800/50 shadow-[0_1px_4px_rgba(0,0,0,0.08)] dark:shadow-none border border-slate-200/80 dark:border-slate-700/50 rounded-xl p-6 hover:border-blue-400/60 hover:shadow-[0_4px_16px_rgba(59,130,246,0.10)] dark:hover:border-blue-500/40 transition-all duration-300">
-                    <AnimatedCounter
-                      target={s.value}
-                      suffix={s.suffix}
-                      className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1"
-                    />
-                    <div className="text-slate-600 dark:text-slate-400 text-sm">{s.label}</div>
+                    {s.kind === 'number' ? (
+                      <AnimatedCounter
+                        target={s.value}
+                        suffix={s.suffix}
+                        className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1"
+                      />
+                    ) : (
+                      <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">{s.text}</div>
+                    )}
+                    <div className="text-slate-600 dark:text-slate-300 text-sm">{s.label}</div>
                   </div>
                 </ScrollReveal>
               ))}
@@ -143,19 +147,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Portfolio ── */}
-      <section className="py-14 md:py-20 bg-slate-50 dark:bg-slate-900">
+      {/* ── Selected Work ── */}
+      <section className="py-16 md:py-20 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">{t('sec_portfolio_title')}</h2>
-              <p className="text-slate-600 dark:text-slate-400 text-sm max-w-lg">{t('sec_portfolio_desc')}</p>
+              <p className="text-slate-600 dark:text-slate-300 text-sm max-w-lg">{t('sec_portfolio_desc')}</p>
+              <p className="text-slate-500 dark:text-slate-400 text-xs max-w-lg mt-2">{t('sec_portfolio_note')}</p>
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {projects.slice(0, 3).map((p, i) => (
               <ScrollReveal key={p.id} delay={i * 70}>
-                <Link href={`/portfolio/${p.slug}`} className="block h-full">
+                <Link href={`/portfolio/${p.slug}`} aria-label={`View ${p.title} case study`} className="block h-full">
                   <PortfolioCard {...p} />
                 </Link>
               </ScrollReveal>
@@ -173,16 +178,16 @@ export default function HomePage() {
       <TestimonialsSection />
 
       {/* ── Blog ── */}
-      <section className="py-14 md:py-20 bg-slate-50 dark:bg-slate-900">
+      <section className="py-16 md:py-20 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">{t('sec_blog_title')}</h2>
-              <p className="text-slate-600 dark:text-slate-400 text-sm max-w-lg">{t('sec_blog_desc')}</p>
+              <p className="text-slate-600 dark:text-slate-300 text-sm max-w-lg">{t('sec_blog_desc')}</p>
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {blogPosts.map((p, i) => (
+            {blogPosts.slice(0, 4).map((p, i) => (
               <ScrollReveal key={p.id} delay={i * 60}>
                 <Link href={`/blog/${p.slug}`} className="block h-full">
                   <BlogCard {...p} />
@@ -199,7 +204,7 @@ export default function HomePage() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="py-14 md:py-20 bg-white dark:bg-slate-950">
+      <section className="py-10 md:py-12 bg-white dark:bg-slate-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="mb-8">
@@ -223,7 +228,7 @@ export default function HomePage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-14 md:py-20 bg-white dark:bg-slate-950">
+      <section className="py-16 md:py-20 bg-white dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50 dark:from-blue-900/40 dark:via-indigo-900/20 dark:to-slate-900/60 border border-blue-200 dark:border-blue-500/20 rounded-2xl p-10 md:p-14 text-center">
